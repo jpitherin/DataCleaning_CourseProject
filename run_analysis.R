@@ -20,7 +20,10 @@ rm(mean_sd)
 
 ### 4) appropriately labelling the data set with descriptive variable names
 ### Adding names to X_test, X_train, Y_test, Y_train, subject_test, subject_train
-MSnames <- read.table("./UCI HAR Dataset/features_mean_sd.txt")
+MSnames <- read.table("./UCI HAR Dataset/features.txt")[mean_sd,]
+# converts to 66 factor levels from 477 factor levels
+MSnames[,2] <- as.factor(as.character(MSnames[,2]))
+
 names(X_test) <- MSnames[,2]
 names(X_train) <- MSnames[,2]
 names(Y_test) <- "activity"
